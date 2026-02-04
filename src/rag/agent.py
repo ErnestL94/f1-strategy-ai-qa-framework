@@ -1,16 +1,19 @@
 """
-F1 Strategy Agent - Core decision engine
+F1 Strategy Agent - Core decision engine.
 """
+from src.validators.input_validator import InputValidator, ScenarioValidationError
+
 
 class F1StrategyAgent:
     """
     Generates race strategy recommendations.
-    Version 0.2.0: Rule-based decision logic
+    Version 0.3.0: Added input validation and guardrails
     """
     
     def __init__(self):
         """Initialize the strategy agent"""
-        self.version = "v0.2.0-rules"
+        self.version = "v0.3.0-validated"
+        self.validator = InputValidator()
     
     def generate_strategy(self, scenario: dict) -> dict:
         """
@@ -19,15 +22,36 @@ class F1StrategyAgent:
             scenario: Race scenario dict with lap, driver, tires, weather, etc.
         Returns:
             Strategy recommendation with decision, rationale, confidence, risk
+        Raises:
+            ScenarioValidationError: If scenario data is invalid
         """
+        # STEP 1: Validate inputs
+        is_valid, errors = self.validator.validate_scenario(scenario)
+        if not is_valid:
+            raise ScenarioValidationError(
+                f"Invalid scenario data:\n" + "\n".join(f"  - {e}" for e in errors)
+            )
+        
         # Extract scenario data
         lap = scenario["lap"]
         tires = scenario["tires"]
         tire_age = tires["age_laps"]
         tire_compound = tires["compound"]
         weather = scenario["weather"]
+        weather_condition = weather.get("condition", "unknown")
         
-        # Decision logic
+        # STEP 2: Check weather/tire compatibility
+        is_compatible, warning = self.validator.validate_weather_tire_compatibility(
+            tire_compound, weather_condition
+        )
+        
+        if not is_compatible:
+            # Dangerous situation - override normal logic
+            return self._handle_dangerous_situation(
+                tire_compound, weather_condition, warning, scenario
+            )
+        
+        # STEP 3: Normal decision logic
         decision, rationale, confidence, risk = self._make_decision(
             lap, tire_age, tire_compound, weather, scenario
         )
@@ -38,6 +62,56 @@ class F1StrategyAgent:
             "rationale": rationale,
             "confidence_score": confidence,
             "risk_level": risk,
+            "model_version": self.version
+        }
+    
+    def _handle_dangerous_situation(
+        self,
+        current_compound: str,
+        weather_condition: str,
+        warning: str,
+        scenario: dict
+    ) -> dict:
+        """
+        Handle dangerous weather/tire mismatches.
+        These situations override normal strategy.
+        """
+        # Slicks in wet = Must pit for inters/wets
+        if current_compound in ["SOFT", "MEDIUM", "HARD"]:
+            if "heavy" in weather_condition.lower():
+                recommended_compound = "WET"
+            else:
+                recommended_compound = "INTERMEDIATE"
+            
+            return {
+                "decision": "BOX",
+                "compound": recommended_compound,
+                "rationale": f"{warning} Immediate tire change required for safety.",
+                "confidence_score": 0.98,
+                "risk_level": "HIGH",
+                "model_version": self.version,
+                "warning": warning
+            }
+        
+        # Wets/inters on dry = Must pit for slicks
+        if current_compound in ["INTERMEDIATE", "WET"]:
+            return {
+                "decision": "BOX",
+                "compound": "MEDIUM",  # Safe default for dry
+                "rationale": f"{warning} Tire overheating risk. Change to slicks.",
+                "confidence_score": 0.95,
+                "risk_level": "MEDIUM",
+                "model_version": self.version,
+                "warning": warning
+            }
+        
+        # Fallback (shouldn't reach here)
+        return {
+            "decision": "BOX",
+            "compound": "MEDIUM",
+            "rationale": warning,
+            "confidence_score": 0.50,
+            "risk_level": "HIGH",
             "model_version": self.version
         }
     
