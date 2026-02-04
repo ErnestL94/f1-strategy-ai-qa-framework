@@ -21,7 +21,7 @@ class InputValidator:
     
     # Reasonable bounds
     MAX_TIRE_AGE = 100  # No tire lasts 100 laps
-    MAX_RACE_LAPS = 100  # Longest F1 races are ~70 laps
+    MAX_RACE_LAPS = 80  # Longest F1 races are ~70 laps
     
     @staticmethod
     def validate_scenario(scenario: Dict) -> Tuple[bool, List[str]]:

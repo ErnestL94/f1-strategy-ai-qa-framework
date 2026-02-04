@@ -57,7 +57,6 @@ class TestHallucinationGuards:
         with pytest.raises(ValueError, match="(?i)tire age.*exceeds|impossible"):
             agent.generate_strategy(scenario)
     
-    @pytest.mark.xfail(reason="Agent doesn't validate lap numbers yet")
     def test_rejects_future_lap(self, agent, adversarial_scenarios):
         """Agent should reject lap > race distance"""
         scenario = next(
