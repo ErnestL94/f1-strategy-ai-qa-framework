@@ -163,6 +163,12 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+### 2. Build Vector Database
+```bash
+# Ingest golden scenarios into vector DB
+python scripts/ingest_golden_scenarios.py
+```
+
 ### Run Tests
 ```bash
 # Run all tests
