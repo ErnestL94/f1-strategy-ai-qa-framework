@@ -1,0 +1,203 @@
+{
+  "race": {
+    "name": "Singapore Grand Prix 2023",
+    "track": "Marina Bay Street Circuit",
+    "date": "2023-09-17",
+    "total_laps": 62,
+    "regulation_era": "ground_effect_2023"
+  },
+  "scenarios": [
+    {
+      "id": "singapore_2023_leclerc_lap1",
+      "name": "Leclerc Split Strategy Start - Rear Gunner Role",
+      "lap": 1,
+      "driver": "LEC",
+      "position": {
+        "before": 3,
+        "after": 2
+      },
+      "tires": {
+        "compound": "SOFT",
+        "age_laps": 0,
+        "condition": "optimal"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 38,
+        "air_temp": 30,
+        "description": "Humid, night race under lights"
+      },
+      "context": {
+        "description": "Ferrari split strategy: Sainz on Mediums (controlling pace), Leclerc on Softs (rear gunner). Used extra grip to jump Russell, protecting Ferrari 1-2.",
+        "strategic_significance": "Tests AI's understanding of split strategies and team tactics. Fresh Softs for overtaking vs teammates on Mediums for pace control."
+      },
+      "golden_truth": {
+        "decision": "STAY_OUT",
+        "rationale": "Fresh Soft tires optimal for race start. Extra grip enables overtaking. Rear gunner role protecting teammate Sainz. Track position critical at lights out.",
+        "confidence_level": "HIGH",
+        "risk_level": "LOW",
+        "actual_outcome": "Jumped Russell off the line, secured P2, protected Sainz"
+      },
+      "test_criteria": {
+        "must_recommend": "STAY_OUT",
+        "confidence_minimum": 0.85,
+        "key_factors": ["fresh_tires", "race_start", "optimal_grip"]
+      }
+    },
+    {
+      "id": "singapore_2023_sainz_lap20",
+      "name": "Sainz Safety Car Transition - Long Game Commitment",
+      "lap": 20,
+      "driver": "SAI",
+      "position": 1,
+      "tires": {
+        "compound": "MEDIUM",
+        "age_laps": 20,
+        "condition": "end_of_optimal_window"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 40,
+        "air_temp": 31
+      },
+      "race_state": "safety_car",
+      "gaps": {
+        "to_p2": 1.8,
+        "to_p3": 3.2
+      },
+      "context": {
+        "description": "Sargeant crashed. Safety Car deployed. Entire lead pack pitting. Critical transition to 'long game' - must make Hards last 42 laps on high-degradation street circuit.",
+        "strategic_significance": "Tests AI's Safety Car exploitation and stint length planning. Transition from sprint to management phase."
+      },
+      "golden_truth": {
+        "decision": "BOX",
+        "compound_choice": "HARD",
+        "rationale": "Safety Car negates pit time loss. Mediums at 20 laps at optimal window end. Switch to Hards for 42-lap final stint. Street circuit requires tire management strategy.",
+        "confidence_level": "HIGH",
+        "risk_level": "MEDIUM",
+        "actual_outcome": "Pitted for Hards, managed pace for 42 laps, won race"
+      },
+      "test_criteria": {
+        "must_recommend": "BOX",
+        "must_recommend_compound": "HARD",
+        "confidence_minimum": 0.85,
+        "key_factors": ["safety_car_opportunity", "tire_window_optimal", "stint_length_commitment"]
+      }
+    },
+    {
+      "id": "singapore_2023_russell_lap44",
+      "name": "Russell VSC Gamble - Aggressive Double-Stack",
+      "lap": 44,
+      "driver": "RUS",
+      "position": 2,
+      "tires": {
+        "compound": "HARD",
+        "age_laps": 24,
+        "condition": "mid_stint"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 39,
+        "air_temp": 30
+      },
+      "race_state": "virtual_safety_car",
+      "gaps": {
+        "to_p1_sainz": 5.2,
+        "to_p3_hamilton": 1.8
+      },
+      "context": {
+        "description": "Ocon breakdown triggers VSC. Mercedes double-stacks Russell and Hamilton for fresh Mediums. Emerges 15s behind but 2s/lap faster. High-risk aggressive strategy.",
+        "strategic_significance": "Tests AI's Virtual Safety Car opportunism and aggressive risk-taking. Sacrificing track position for pace advantage in final stint."
+      },
+      "golden_truth": {
+        "decision": "BOX",
+        "compound_choice": "MEDIUM",
+        "rationale": "VSC reduces pit time loss. Hards at 24 laps serviceable but not optimal. Fresh Mediums give 2s/lap pace advantage. 18 laps to hunt leaders on dead tires. High risk, high reward.",
+        "confidence_level": "MEDIUM",
+        "risk_level": "HIGH",
+        "actual_outcome": "Pitted for Mediums, charged from 15s back to within 0.5s of lead, crashed final lap"
+      },
+      "test_criteria": {
+        "acceptable_decisions": ["BOX", "STAY_OUT"],
+        "if_box_must_recommend_compound": "MEDIUM",
+        "confidence_range": [0.55, 0.75],
+        "key_factors": ["vsc_opportunity", "pace_advantage_gamble", "aggressive_risk"]
+      }
+    },
+    {
+      "id": "singapore_2023_sainz_lap60",
+      "name": "Sainz DRS Manipulation - Using Rival as Shield",
+      "lap": 60,
+      "driver": "SAI",
+      "position": 1,
+      "tires": {
+        "compound": "HARD",
+        "age_laps": 40,
+        "condition": "critical_wear"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 38,
+        "air_temp": 29
+      },
+      "gaps": {
+        "to_p2_norris": 0.8,
+        "to_p3_russell": 1.2
+      },
+      "context": {
+        "description": "Russell and Hamilton charging on fresh Mediums. Sainz on 40-lap Hards. Intentionally kept Norris within DRS (1s) to give McLaren straight-line speed to defend against Mercedes. Used rival as shield.",
+        "strategic_significance": "Tests AI's advanced tactical awareness and defensive driving. DRS manipulation to protect position on dead tires."
+      },
+      "golden_truth": {
+        "decision": "STAY_OUT",
+        "rationale": "Only 2 laps remaining. P1 with dead Hards requires defensive tactics. Keep Norris in DRS range to use as shield against faster Mercedes. Track position priority over tire condition.",
+        "confidence_level": "HIGH",
+        "risk_level": "HIGH",
+        "actual_outcome": "Stayed out, manipulated DRS, won race by 0.5s"
+      },
+      "test_criteria": {
+        "must_recommend": "STAY_OUT",
+        "confidence_range": [0.70, 0.90],
+        "key_factors": ["final_laps", "defensive_position", "track_position_priority"],
+        "note": "Advanced DRS tactics beyond agent scope - accepts STAY_OUT on position/lap count alone"
+      }
+    },
+    {
+      "id": "singapore_2023_russell_lap62",
+      "name": "Russell Final Lap Push - Strategy Success, Execution Failure",
+      "lap": 62,
+      "driver": "RUS",
+      "position": 3,
+      "tires": {
+        "compound": "MEDIUM",
+        "age_laps": 18,
+        "condition": "optimal"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 37,
+        "air_temp": 29
+      },
+      "gaps": {
+        "to_p2_norris": 0.5,
+        "to_p4_hamilton": 1.2
+      },
+      "context": {
+        "description": "Final lap. Russell charged from 15s back to within 0.5s of P2. Mediums still fresh at 18 laps. Clipped wall at Turn 10, crashed out. Strategy perfect, execution failed.",
+        "strategic_significance": "Tests AI's final lap decision making. Tires optimal, charging for position, high-pressure scenario on unforgiving street circuit."
+      },
+      "golden_truth": {
+        "decision": "STAY_OUT",
+        "rationale": "Final lap of race. Mediums at 18 laps still optimal. 0.5s from P2. Push maximum attack for position. No strategic alternatives available.",
+        "confidence_level": "HIGH",
+        "risk_level": "LOW",
+        "actual_outcome": "Stayed out, pushed for overtake, crashed Turn 10 (strategy was correct)"
+      },
+      "test_criteria": {
+        "must_recommend": "STAY_OUT",
+        "confidence_minimum": 0.85,
+        "key_factors": ["final_lap", "optimal_tires", "attacking_position"]
+      }
+    }
+  ]
+}
