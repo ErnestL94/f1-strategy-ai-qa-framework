@@ -7,12 +7,12 @@ from src.validators.input_validator import InputValidator, ScenarioValidationErr
 class F1StrategyAgent:
     """
     Generates race strategy recommendations.
-    Version 0.3.0: Added input validation and guardrails
+    Version 0.3.2: Added SC, VSC, final laps logic.
     """
     
     def __init__(self):
         """Initialize the strategy agent"""
-        self.version = "v0.3.0-validated"
+        self.version = "v0.3.2-sc-vsc-final-laps"
         self.validator = InputValidator()
     
     def generate_strategy(self, scenario: dict) -> dict:
