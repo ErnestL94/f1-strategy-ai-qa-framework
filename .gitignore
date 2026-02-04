@@ -7,6 +7,8 @@ __pycache__/
 *.pyd
 .Python
 pytest.ini
+htmlcov/
+.coverage
 
 # Data
 data/cache/
