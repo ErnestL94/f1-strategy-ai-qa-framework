@@ -1,10 +1,12 @@
 # Python
 f1-strat-ai-qa-framework/
+f1-strat-ai-qa-framework-old/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
+pytest.ini
 
 # Data
 data/cache/
