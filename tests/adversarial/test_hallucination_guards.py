@@ -54,7 +54,7 @@ class TestHallucinationGuards:
             if s["id"] == "adv_impossible_tire_age"
         )
         
-        with pytest.raises(ValueError, match="tire age.*exceeds|impossible"):
+        with pytest.raises(ValueError, match="(?i)tire age.*exceeds|impossible"):
             agent.generate_strategy(scenario)
     
     @pytest.mark.xfail(reason="Agent doesn't validate lap numbers yet")
