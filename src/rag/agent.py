@@ -128,7 +128,58 @@ class F1StrategyAgent:
         Returns:
             (decision, rationale, confidence, risk)
         """
+        # RULE -1: Final laps protection (within 3 laps of finish)
+        # Must come FIRST - never pit in final laps unless emergency
+        # Estimate race end: if lap > 58 (typical F1 race is 50-70 laps)
+        if lap >= 58:  # Heuristic for "final laps" without knowing total_laps
+            # Exception: Emergency weather/tire situations handled by other rules
+            # For now, just don't pit for normal degradation
+            if tire_age < 30 or tire_age >= 30:  # Covers all cases
+                return (
+                    "STAY_OUT",
+                    f"Final laps of race (L{lap}). Position priority over tire condition. No time to benefit from pit stop.",
+                    0.85,
+                    "MEDIUM"
+                )
         
+        # RULE 0A: Safety Car opportunity
+        race_state = scenario.get("race_state", "").lower()
+        if "safety" in race_state or "sc" in race_state:
+            # Safety Car or VSC - exploit for "free" pit stop
+            if tire_age >= 15:  # Tires past early stint
+                return (
+                    "BOX",
+                    f"Safety Car/VSC opportunity. {tire_compound} at {tire_age} laps ready for change. Pit time loss negated.",
+                    0.90,
+                    "LOW"
+                )
+        
+        # RULE 0B: Free pit stop opportunity (late race, huge gaps)
+        if "gaps" in scenario and lap > 40 and lap < 58:
+            gaps = scenario["gaps"]
+            
+            # Try multiple gap keys (to_p1, to_p2, to_p3, etc.)
+            gap_ahead = (
+                gaps.get("to_p1") or 
+                gaps.get("to_p2") or 
+                gaps.get("to_p3") or 
+                0
+            )
+            gap_behind = (
+                gaps.get("to_p4") or 
+                gaps.get("to_p5") or 
+                gaps.get("to_p6") or 
+                0
+            )
+            
+            # Position secured with huge gaps (>14s is safe for F1 pit stop)
+            if gap_ahead > 14 and gap_behind > 14:
+                return (
+                    "BOX",
+                    f"Free pit stop opportunity. P{scenario.get('position', 'X')} secured with {gap_ahead:.1f}s ahead, {gap_behind:.1f}s behind. Attack fastest lap point with fresh tires.",
+                    0.90,
+                    "LOW"
+                )
         # Rule 1: Fresh tires at start = STAY OUT
         if tire_age == 0:
             return (

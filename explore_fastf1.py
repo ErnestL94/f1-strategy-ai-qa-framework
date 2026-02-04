@@ -1,49 +1,79 @@
-import fastf1 as ff1
-import pandas as pd
+"""
+FastF1 Race Data Explorer
+
+Usage:
+    python explore_fastf1.py --year 2023 --track Silverstone
+    python explore_fastf1.py --year 2023 --track Spa-Francorchamps
+    python explore_fastf1.py --year 2023 --track Singapore
+"""
+import argparse
+import fastf1
+from pathlib import Path
 
 
-# Enable caching to speed up data retrieval
-ff1.Cache.enable_cache('data/cache')   
+def load_race_session(year: int, track: str, session_type: str = 'R'):
+    """Load a race session from FastF1"""
+    # Enable cache
+    cache_dir = Path('data/cache')
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    fastf1.Cache.enable_cache(str(cache_dir))
+    
+    print(f"Loading {track} {year} Race...")
+    session = fastf1.get_session(year, track, session_type)
+    session.load()
+    
+    return session
 
-# Load Silverstone 2023 Race
-print("Loading Silverstone 2023 Race data...")
-session = ff1.get_session(2023, 'Silverstone', 'R')
-session.load()
 
-print("/n" + "=" *60)
-print("Silverstone 2023 - Data available")
-print("=" *60)
+def main():
+    parser = argparse.ArgumentParser(description='Explore F1 race data')
+    parser.add_argument('--year', type=int, default=2023, help='Season year')
+    parser.add_argument('--track', type=str, required=True, help='Track name')
+    parser.add_argument('--drivers', nargs='+', help='Specific drivers (default: top 5)')
+    
+    args = parser.parse_args()
+    
+    # Load session
+    session = load_race_session(args.year, args.track)
+    
+    print("\n" + "="*60)
+    print(f"{args.track.upper()} {args.year} - DATA AVAILABLE")
+    print("="*60)
+    
+    # 1. Race Results
+    print("\n📊 RACE RESULTS:")
+    print(session.results[['Abbreviation', 'Position', 'GridPosition', 'Points']].head(10))
+    
+    # 2. Pit stops
+    drivers = args.drivers if args.drivers else session.results.head(5)['Abbreviation'].tolist()
+    
+    print("\n🔧 PIT STOPS:")
+    for driver in drivers:
+        driver_laps = session.laps.pick_drivers(driver)
+        pit_laps = driver_laps[driver_laps['PitOutTime'].notna()]
+        
+        print(f"\n{driver}:")
+        for _, lap in pit_laps.iterrows():
+            print(f"  Lap {lap['LapNumber']}: {lap['Compound']}")
+    
+    # 3. Weather data
+    print("\n🌦️ WEATHER DATA AVAILABLE:")
+    print(session.weather_data.head())
+    
+    # 4. Example lap detail
+    print(f"\n🎯 EXAMPLE - {drivers[0]} Lap 30:")
+    driver_laps = session.laps.pick_drivers(drivers[0])
+    try:
+        lap_30 = driver_laps[driver_laps['LapNumber'] == 30].iloc[0]
+        print(f"  Tire: {lap_30['Compound']}")
+        print(f"  Tire Age: {lap_30['TyreLife']} laps")
+        print(f"  Lap Time: {lap_30['LapTime']}")
+        print(f"  Position: {lap_30['Position']}")
+    except:
+        print("  (Lap 30 data not available)")
+    
+    print("\n✅ Explore the data above and identify 3-5 strategic moments!")
 
-#1. Race Results
-print("\n Race Results:")
-print(session.results[['Abbreviation', 'Position', 'GridPosition', 'Points']].head(10))
 
-#2. Driver's laps e.g. Verstappen
-ver_laps = session.laps.pick_drivers('VER')
-print(f"\n Verstappen's Race:")
-print(f"Total Laps: {len(ver_laps)}")
-print(f"Fastest Lap: {ver_laps['LapTime'].min()}")
-
-#3. Pit Stops
-print("\n Pit Stops:")
-for driver in ['VER', 'HAM', 'LEC']:
-    driver_laps = session.laps.pick_drivers(driver)
-    pit_laps = driver_laps[driver_laps['PitOutTime'].notna()]
-    print(f"\n{driver}:")
-    for _, lap in pit_laps.iterrows():
-       print(f" Lap {lap['LapNumber']}: {lap['Compound']} -> (pit) -> Next Compound")
-
-#4. Weather Data
-print("\n Weather Data:")
-print(session.weather_data.head())
-
-#5. Interesting strategic moment
-print("\n Strategic Moment Analysis - Lap 40-45:")
-lap_42 = ver_laps[ver_laps['LapNumber'] == 42].iloc[0]
-print(f"Verstappen Lap 42:")
-print(f"Tire: {lap_42['Compound']}")
-print(f"Tire Age: {lap_42['TyreLife']} laps")
-print(f"Lap Time: {lap_42['LapTime']}")
-print(f"Position: {lap_42['Position']}")
-
-print("\nAnalysis complete for data needed.")
+if __name__ == "__main__":
+    main()
