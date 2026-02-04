@@ -1,0 +1,847 @@
+{
+  "files": {
+    "src/rag/agent.py": {
+      "classes": {
+        "": {
+          "excluded_lines": [],
+          "executed_lines": [
+            5,
+            8,
+            14,
+            19,
+            69,
+            119,
+            231
+          ],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 7,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 7,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "F1StrategyAgent": {
+          "excluded_lines": [],
+          "executed_lines": [
+            16,
+            17,
+            30,
+            31,
+            32,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            45,
+            49,
+            51,
+            56,
+            60,
+            81,
+            82,
+            83,
+            87,
+            98,
+            99,
+            130,
+            133,
+            134,
+            142,
+            143,
+            145,
+            146,
+            154,
+            155,
+            158,
+            159,
+            162,
+            163,
+            170,
+            171,
+            179,
+            180,
+            188,
+            189,
+            197,
+            198,
+            206,
+            208,
+            216,
+            233,
+            236,
+            238
+          ],
+          "missing_lines": [
+            85,
+            110,
+            209,
+            224
+          ],
+          "start_line": 8,
+          "summary": {
+            "covered_lines": 49,
+            "excluded_lines": 0,
+            "missing_lines": 4,
+            "num_statements": 53,
+            "percent_covered": 92.45283018867924,
+            "percent_covered_display": "92",
+            "percent_statements_covered": 92.45283018867924,
+            "percent_statements_covered_display": "92"
+          }
+        }
+      },
+      "excluded_lines": [],
+      "executed_lines": [
+        5,
+        8,
+        14,
+        16,
+        17,
+        19,
+        30,
+        31,
+        32,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        45,
+        49,
+        51,
+        56,
+        60,
+        69,
+        81,
+        82,
+        83,
+        87,
+        98,
+        99,
+        119,
+        130,
+        133,
+        134,
+        142,
+        143,
+        145,
+        146,
+        154,
+        155,
+        158,
+        159,
+        162,
+        163,
+        170,
+        171,
+        179,
+        180,
+        188,
+        189,
+        197,
+        198,
+        206,
+        208,
+        216,
+        231,
+        233,
+        236,
+        238
+      ],
+      "functions": {
+        "": {
+          "excluded_lines": [],
+          "executed_lines": [
+            5,
+            8,
+            14,
+            19,
+            69,
+            119,
+            231
+          ],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 7,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 7,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "F1StrategyAgent.__init__": {
+          "excluded_lines": [],
+          "executed_lines": [
+            16,
+            17
+          ],
+          "missing_lines": [],
+          "start_line": 14,
+          "summary": {
+            "covered_lines": 2,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 2,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "F1StrategyAgent._handle_dangerous_situation": {
+          "excluded_lines": [],
+          "executed_lines": [
+            81,
+            82,
+            83,
+            87,
+            98,
+            99
+          ],
+          "missing_lines": [
+            85,
+            110
+          ],
+          "start_line": 69,
+          "summary": {
+            "covered_lines": 6,
+            "excluded_lines": 0,
+            "missing_lines": 2,
+            "num_statements": 8,
+            "percent_covered": 75.0,
+            "percent_covered_display": "75",
+            "percent_statements_covered": 75.0,
+            "percent_statements_covered_display": "75"
+          }
+        },
+        "F1StrategyAgent._is_weather_changing": {
+          "excluded_lines": [],
+          "executed_lines": [
+            233,
+            236,
+            238
+          ],
+          "missing_lines": [],
+          "start_line": 231,
+          "summary": {
+            "covered_lines": 3,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 3,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "F1StrategyAgent._make_decision": {
+          "excluded_lines": [],
+          "executed_lines": [
+            130,
+            133,
+            134,
+            142,
+            143,
+            145,
+            146,
+            154,
+            155,
+            158,
+            159,
+            162,
+            163,
+            170,
+            171,
+            179,
+            180,
+            188,
+            189,
+            197,
+            198,
+            206,
+            208,
+            216
+          ],
+          "missing_lines": [
+            209,
+            224
+          ],
+          "start_line": 119,
+          "summary": {
+            "covered_lines": 24,
+            "excluded_lines": 0,
+            "missing_lines": 2,
+            "num_statements": 26,
+            "percent_covered": 92.3076923076923,
+            "percent_covered_display": "92",
+            "percent_statements_covered": 92.3076923076923,
+            "percent_statements_covered_display": "92"
+          }
+        },
+        "F1StrategyAgent.generate_strategy": {
+          "excluded_lines": [],
+          "executed_lines": [
+            30,
+            31,
+            32,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            45,
+            49,
+            51,
+            56,
+            60
+          ],
+          "missing_lines": [],
+          "start_line": 19,
+          "summary": {
+            "covered_lines": 14,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 14,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        }
+      },
+      "missing_lines": [
+        85,
+        110,
+        209,
+        224
+      ],
+      "summary": {
+        "covered_lines": 56,
+        "excluded_lines": 0,
+        "missing_lines": 4,
+        "num_statements": 60,
+        "percent_covered": 93.33333333333333,
+        "percent_covered_display": "93",
+        "percent_statements_covered": 93.33333333333333,
+        "percent_statements_covered_display": "93"
+      }
+    },
+    "src/validators/__init__.py": {
+      "classes": {
+        "": {
+          "excluded_lines": [],
+          "executed_lines": [
+            3,
+            4,
+            6
+          ],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 3,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 3,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        }
+      },
+      "excluded_lines": [],
+      "executed_lines": [
+        3,
+        4,
+        6
+      ],
+      "functions": {
+        "": {
+          "excluded_lines": [],
+          "executed_lines": [
+            3,
+            4,
+            6
+          ],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 3,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 3,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        }
+      },
+      "missing_lines": [],
+      "summary": {
+        "covered_lines": 3,
+        "excluded_lines": 0,
+        "missing_lines": 0,
+        "num_statements": 3,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100"
+      }
+    },
+    "src/validators/input_validator.py": {
+      "classes": {
+        "": {
+          "excluded_lines": [
+            12
+          ],
+          "executed_lines": [
+            6,
+            9,
+            15,
+            22,
+            25,
+            26,
+            28,
+            29,
+            71,
+            72
+          ],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 10,
+            "excluded_lines": 1,
+            "missing_lines": 0,
+            "num_statements": 10,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "InputValidator": {
+          "excluded_lines": [],
+          "executed_lines": [
+            37,
+            40,
+            41,
+            42,
+            43,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            60,
+            61,
+            62,
+            64,
+            65,
+            69,
+            80,
+            83,
+            84,
+            85,
+            86,
+            93,
+            94,
+            95,
+            96,
+            102
+          ],
+          "missing_lines": [
+            63
+          ],
+          "start_line": 15,
+          "summary": {
+            "covered_lines": 27,
+            "excluded_lines": 0,
+            "missing_lines": 1,
+            "num_statements": 28,
+            "percent_covered": 96.42857142857143,
+            "percent_covered_display": "96",
+            "percent_statements_covered": 96.42857142857143,
+            "percent_statements_covered_display": "96"
+          }
+        },
+        "ScenarioValidationError": {
+          "excluded_lines": [],
+          "executed_lines": [],
+          "missing_lines": [],
+          "start_line": 9,
+          "summary": {
+            "covered_lines": 0,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 0,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        }
+      },
+      "excluded_lines": [
+        12
+      ],
+      "executed_lines": [
+        6,
+        9,
+        15,
+        22,
+        25,
+        26,
+        28,
+        29,
+        37,
+        40,
+        41,
+        42,
+        43,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        60,
+        61,
+        62,
+        64,
+        65,
+        69,
+        71,
+        72,
+        80,
+        83,
+        84,
+        85,
+        86,
+        93,
+        94,
+        95,
+        96,
+        102
+      ],
+      "functions": {
+        "": {
+          "excluded_lines": [
+            12
+          ],
+          "executed_lines": [
+            6,
+            9,
+            15,
+            22,
+            25,
+            26,
+            28,
+            29,
+            71,
+            72
+          ],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 10,
+            "excluded_lines": 1,
+            "missing_lines": 0,
+            "num_statements": 10,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "InputValidator.validate_scenario": {
+          "excluded_lines": [],
+          "executed_lines": [
+            37,
+            40,
+            41,
+            42,
+            43,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            60,
+            61,
+            62,
+            64,
+            65,
+            69
+          ],
+          "missing_lines": [
+            63
+          ],
+          "start_line": 29,
+          "summary": {
+            "covered_lines": 17,
+            "excluded_lines": 0,
+            "missing_lines": 1,
+            "num_statements": 18,
+            "percent_covered": 94.44444444444444,
+            "percent_covered_display": "94",
+            "percent_statements_covered": 94.44444444444444,
+            "percent_statements_covered_display": "94"
+          }
+        },
+        "InputValidator.validate_weather_tire_compatibility": {
+          "excluded_lines": [],
+          "executed_lines": [
+            80,
+            83,
+            84,
+            85,
+            86,
+            93,
+            94,
+            95,
+            96,
+            102
+          ],
+          "missing_lines": [],
+          "start_line": 72,
+          "summary": {
+            "covered_lines": 10,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 10,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        }
+      },
+      "missing_lines": [
+        63
+      ],
+      "summary": {
+        "covered_lines": 37,
+        "excluded_lines": 1,
+        "missing_lines": 1,
+        "num_statements": 38,
+        "percent_covered": 97.36842105263158,
+        "percent_covered_display": "97",
+        "percent_statements_covered": 97.36842105263158,
+        "percent_statements_covered_display": "97"
+      }
+    },
+    "src/validators/schema_validator.py": {
+      "classes": {
+        "": {
+          "excluded_lines": [],
+          "executed_lines": [
+            6,
+            8,
+            45,
+            52,
+            55,
+            59,
+            60,
+            64,
+            68,
+            69,
+            72,
+            73,
+            77,
+            78,
+            79,
+            80,
+            84,
+            85,
+            89,
+            90,
+            91,
+            92,
+            96,
+            97,
+            100
+          ],
+          "missing_lines": [
+            56,
+            57,
+            61,
+            65,
+            66,
+            74,
+            81,
+            86,
+            93,
+            98
+          ],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 25,
+            "excluded_lines": 0,
+            "missing_lines": 10,
+            "num_statements": 35,
+            "percent_covered": 71.42857142857143,
+            "percent_covered_display": "71",
+            "percent_statements_covered": 71.42857142857143,
+            "percent_statements_covered_display": "71"
+          }
+        }
+      },
+      "excluded_lines": [],
+      "executed_lines": [
+        6,
+        8,
+        45,
+        52,
+        55,
+        59,
+        60,
+        64,
+        68,
+        69,
+        72,
+        73,
+        77,
+        78,
+        79,
+        80,
+        84,
+        85,
+        89,
+        90,
+        91,
+        92,
+        96,
+        97,
+        100
+      ],
+      "functions": {
+        "": {
+          "excluded_lines": [],
+          "executed_lines": [
+            6,
+            8,
+            45
+          ],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_lines": 3,
+            "excluded_lines": 0,
+            "missing_lines": 0,
+            "num_statements": 3,
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "validate_golden_dataset": {
+          "excluded_lines": [],
+          "executed_lines": [
+            52,
+            55,
+            59,
+            60,
+            64,
+            68,
+            69,
+            72,
+            73,
+            77,
+            78,
+            79,
+            80,
+            84,
+            85,
+            89,
+            90,
+            91,
+            92,
+            96,
+            97,
+            100
+          ],
+          "missing_lines": [
+            56,
+            57,
+            61,
+            65,
+            66,
+            74,
+            81,
+            86,
+            93,
+            98
+          ],
+          "start_line": 45,
+          "summary": {
+            "covered_lines": 22,
+            "excluded_lines": 0,
+            "missing_lines": 10,
+            "num_statements": 32,
+            "percent_covered": 68.75,
+            "percent_covered_display": "69",
+            "percent_statements_covered": 68.75,
+            "percent_statements_covered_display": "69"
+          }
+        }
+      },
+      "missing_lines": [
+        56,
+        57,
+        61,
+        65,
+        66,
+        74,
+        81,
+        86,
+        93,
+        98
+      ],
+      "summary": {
+        "covered_lines": 25,
+        "excluded_lines": 0,
+        "missing_lines": 10,
+        "num_statements": 35,
+        "percent_covered": 71.42857142857143,
+        "percent_covered_display": "71",
+        "percent_statements_covered": 71.42857142857143,
+        "percent_statements_covered_display": "71"
+      }
+    }
+  },
+  "meta": {
+    "branch_coverage": false,
+    "format": 3,
+    "show_contexts": false,
+    "timestamp": "2026-02-04T19:09:56.762130",
+    "version": "7.13.3"
+  },
+  "totals": {
+    "covered_lines": 121,
+    "excluded_lines": 1,
+    "missing_lines": 15,
+    "num_statements": 136,
+    "percent_covered": 88.97058823529412,
+    "percent_covered_display": "89",
+    "percent_statements_covered": 88.97058823529412,
+    "percent_statements_covered_display": "89"
+  }
+}
