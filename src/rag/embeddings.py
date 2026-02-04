@@ -136,13 +136,19 @@ class ScenarioEmbedder:
         lap = scenario.get("lap", 0)
         features.append(min(lap / self.MAX_LAP, 1.0))
 
-        # Feature 3: Position (normalized)
-        position = scenario.get("position", 10)
+        # Feature 3: Position (normalized) - HANDLE BOTH INT AND DICT
+        position_raw = scenario.get("position", 10)
+        if isinstance(position_raw, dict):
+            # Position is a dict like {"current": 3, "start": 2}
+            position = position_raw.get("current", 10)
+        else:
+            # Position is an int
+            position = position_raw
         features.append(min(position / self.MAX_POSITION, 1.0))
 
         # Features 4-5: Gaps (normalized)
         gaps = scenario.get("gaps", {})
-        gap_ahead = gaps.get("to_p2", 0) or gaps.get("to_p1", 0) or 0
+        gap_ahead = gaps.get("to_p2", 0) or gaps.get("to_p1", 0) or gaps.get("to_p3", 0) or 0
         gap_behind = gaps.get("to_p4", 0) or gaps.get("to_p5", 0) or 0
         features.append(min(gap_ahead / self.MAX_GAP, 1.0))
         features.append(min(gap_behind / self.MAX_GAP, 1.0))
