@@ -13,6 +13,7 @@ htmlcov/
 # Data
 data/cache/
 data/raw/*.pkl
+data/vectordb/
 
 # IDE
 .vscode/

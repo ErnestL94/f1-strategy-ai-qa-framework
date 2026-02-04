@@ -181,3 +181,25 @@ class TestScenarioEmbedder:
         # Should detect VSC
         assert features[9] == 1.0  # VSC flag
         assert features[8] == 0.0  # Not full SC
+
+    def test_handles_dict_position(self, embedder):
+        """Can handle position as dict or int"""
+        # Position as int
+        scenario_int = {"lap": 30, "position": 3, "tires": {"compound": "MEDIUM", "age_laps": 30}}
+
+        # Position as dict
+        scenario_dict = {
+            "lap": 30,
+            "position": {"current": 3, "start": 2},
+            "tires": {"compound": "MEDIUM", "age_laps": 30},
+        }
+
+        features_int = embedder.extract_numerical_features(scenario_int)
+        features_dict = embedder.extract_numerical_features(scenario_dict)
+
+        # Both should work
+        assert len(features_int) == 11
+        assert len(features_dict) == 11
+
+        # Position feature should be the same
+        assert features_int[3] == features_dict[3]
