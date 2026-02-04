@@ -1,0 +1,163 @@
+{
+  "test_suite": "adversarial_hallucination_tests",
+  "purpose": "Test cases designed to break the agent and detect hallucinations",
+  "scenarios": [
+    {
+      "id": "adv_fictional_compound",
+      "name": "Fictional Tire Compound Test",
+      "description": "Agent should reject HYPERSOFT (doesn't exist post-2019)",
+      "lap": 25,
+      "driver": "VER",
+      "position": 2,
+      "tires": {
+        "compound": "HYPERSOFT",
+        "age_laps": 15
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 30,
+        "air_temp": 22
+      },
+      "expected_behavior": {
+        "should_reject": true,
+        "error_type": "invalid_compound",
+        "fallback_allowed": false
+      }
+    },
+    {
+      "id": "adv_negative_tire_age",
+      "name": "Negative Tire Age Test",
+      "description": "Impossible tire age should be rejected",
+      "lap": 30,
+      "driver": "HAM",
+      "position": 3,
+      "tires": {
+        "compound": "MEDIUM",
+        "age_laps": -5
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 28,
+        "air_temp": 20
+      },
+      "expected_behavior": {
+        "should_reject": true,
+        "error_type": "invalid_tire_age",
+        "fallback_allowed": false
+      }
+    },
+    {
+      "id": "adv_impossible_tire_age",
+      "name": "Impossibly Old Tires Test",
+      "description": "Tires can't be 150 laps old in a 52-lap race",
+      "lap": 40,
+      "driver": "LEC",
+      "position": 4,
+      "tires": {
+        "compound": "HARD",
+        "age_laps": 150
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 32,
+        "air_temp": 24
+      },
+      "expected_behavior": {
+        "should_reject": true,
+        "error_type": "tire_age_exceeds_race_laps",
+        "fallback_allowed": false
+      }
+    },
+    {
+      "id": "adv_future_lap",
+      "name": "Future Lap Number Test",
+      "description": "Can't be on lap 99 of a 52-lap race",
+      "lap": 99,
+      "driver": "NOR",
+      "position": 1,
+      "tires": {
+        "compound": "SOFT",
+        "age_laps": 10
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 30,
+        "air_temp": 22
+      },
+      "expected_behavior": {
+        "should_reject": true,
+        "error_type": "lap_exceeds_race_distance",
+        "fallback_allowed": false
+      }
+    },
+    {
+      "id": "adv_contradictory_weather",
+      "name": "Contradictory Weather Data",
+      "description": "Weather says 'dry' but has 'heavy_rain' in description",
+      "lap": 35,
+      "driver": "PER",
+      "position": 5,
+      "tires": {
+        "compound": "INTERMEDIATE",
+        "age_laps": 8
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 18,
+        "air_temp": 15,
+        "description": "Heavy rain reported in all sectors"
+      },
+      "expected_behavior": {
+        "should_flag": true,
+        "warning_type": "contradictory_weather",
+        "confidence_penalty": 0.30
+      }
+    },
+    {
+      "id": "adv_slicks_in_monsoon",
+      "name": "Slicks in Heavy Rain Test",
+      "description": "Should strongly recommend change from slicks in heavy rain",
+      "lap": 20,
+      "driver": "RUS",
+      "position": 6,
+      "tires": {
+        "compound": "SOFT",
+        "age_laps": 5
+      },
+      "weather": {
+        "condition": "heavy_rain",
+        "track_temp": 12,
+        "air_temp": 10,
+        "rainfall": true
+      },
+      "expected_behavior": {
+        "must_recommend": "BOX",
+        "must_recommend_compound": ["INTERMEDIATE", "WET"],
+        "confidence_minimum": 0.95,
+        "risk_level": "HIGH"
+      }
+    },
+    {
+      "id": "adv_wets_on_dry_track",
+      "name": "Full Wets on Dry Track Test",
+      "description": "WET tires overheat on dry track - should recommend change",
+      "lap": 15,
+      "driver": "SAI",
+      "position": 7,
+      "tires": {
+        "compound": "WET",
+        "age_laps": 3
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 35,
+        "air_temp": 26
+      },
+      "expected_behavior": {
+        "must_recommend": "BOX",
+        "must_recommend_compound": ["SOFT", "MEDIUM", "HARD"],
+        "confidence_minimum": 0.90
+      }
+    }
+  ]
+}
