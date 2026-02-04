@@ -6,3 +6,4 @@ deepeval>=0.20.0
 python-dotenv>=1.0.0
 black >=24.0.0
 pytest-cov >=4.0.0
+pre-commit >=3.0.0

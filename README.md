@@ -16,10 +16,8 @@ The 2026 F1 season introduces the biggest regulation changes since 2014:
 **Test Coverage: 100% (27/27 tests passing)**
 ```
 Unit Tests: 14/14
-Evaluation Tests: 5/5
+Evaluation Tests: 18/18
 Adversarial Tests: 8/8
------------------------
-Total: 27/27
 ```
 
 **Code Coverage: 87%**
@@ -33,14 +31,57 @@ TOTAL:               87% coverage
 ![Coverage](coverage.svg)
 
 
-**Development** (Feb 2026)
+## Development (Feb 2026)
 - [x] FastF1 integration
 - [x] Historical validation (2023-2025)
 - [x] Core rule-based agent with guardrails
 - [x] Adversarial testing and security validation
-- [ ] Additional track scenarios
+- [x] Additional track scenarios
 - [ ] RAG implementation
 - [ ] Bahrain GP 2026 ready (March 2)
+
+### Code Quality
+This project uses [Black](https://black.readthedocs.io/) for code formatting.
+```bash
+# Format all code
+black src/ tests/
+
+# Check formatting (CI uses this)
+black --check --diff src/ tests/
+```
+
+### Pre-commit Hooks
+
+Automatically format code before committing:
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+### Running Tests Locally
+```bash
+# All tests
+pytest tests/ -v
+
+# With coverage
+pytest tests/ --cov=src --cov-report=html
+
+# Specific test suite
+pytest tests/unit/ -v
+pytest tests/evaluation/ -v
+pytest tests/adversarial/ -v
+```
+
+### CI/CD Pipeline
+
+GitHub Actions runs on every push and PR:
+- Black code formatting check
+- Unit tests
+- Evaluation tests
+- Adversarial tests
+- Code coverage reporting
+
+All checks must pass before merging to `main`.
 
 ## Key Achievements
 ### Agent Performance
@@ -137,6 +178,21 @@ pytest tests/adversarial/ -v    # Security & edge cases (8 tests)
 # Explore FastF1 data for Silverstone 2023
 python explore_fastf1.py
 ```
+
+### View Dashboard
+```bash
+# Start local server
+python -m http.server 8000
+
+# Open browser to:
+# http://localhost:8000/dashboard/
+```
+
+The dashboard shows:
+- Test suite results (unit, evaluation, adversarial)
+- Code coverage metrics
+- Golden dataset accuracy by track
+- Agent capabilities
 
 ---
 

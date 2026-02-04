@@ -1,0 +1,57 @@
+{
+  "agent_capabilities": [
+    "FIA Regulation Compliance",
+    "Input Validation & Guardrails",
+    "Weather/Tire Safety Detection",
+    "Safety Car / VSC Exploitation",
+    "Free Pit Stop Detection",
+    "Final Laps Protection",
+    "Tire Offset Strategy Recognition"
+  ],
+  "generated_at": "2026-02-04T19:10:58.683875",
+  "golden_datasets": [
+    {
+      "accuracy": 100,
+      "name": "Silverstone",
+      "scenarios": 5
+    },
+    {
+      "accuracy": 100,
+      "name": "Marina Bay Street Circuit",
+      "scenarios": 5
+    },
+    {
+      "accuracy": 100,
+      "name": "Spa-Francorchamps",
+      "scenarios": 5
+    }
+  ],
+  "summary": {
+    "coverage_percent": 87,
+    "overall_accuracy": 100,
+    "passing_tests": 40,
+    "total_scenarios": 15,
+    "total_tests": 40
+  },
+  "test_suites": {
+    "adversarial": {
+      "description": "Security and edge case robustness",
+      "name": "Adversarial Tests",
+      "passing": 8,
+      "total": 8
+    },
+    "evaluation": {
+      "description": "Golden dataset scenario accuracy",
+      "name": "Evaluation Tests",
+      "passing": 18,
+      "total": 18
+    },
+    "unit": {
+      "description": "Dataset validation and schema compliance",
+      "name": "Unit Tests",
+      "passing": 14,
+      "total": 14
+    }
+  },
+  "version": "v0.3.2"
+}
