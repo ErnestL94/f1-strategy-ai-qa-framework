@@ -1,8 +1,8 @@
 # F1 Strategy AI - QA Framework
-Testing AI robustness during F1's 2026 regulation revolution. 
+Testing AI robustness during F1's 2026 regulation revolution.
 
 ## The Challenge
-The 2026 F1 season introduces the biggest regulation changes since 2014: 
+The 2026 F1 season introduces the biggest regulation changes since 2014:
 - New power units (50/50 electric/combustion split)
 - Active aerodynamcis
 - Lighter cars (30kg reduction)
@@ -25,7 +25,7 @@ Total: 27/27
 **Code Coverage: 87%**
 ```
 agent.py:            89% coverage
-input_validator.py:  97% coverage  
+input_validator.py:  97% coverage
 schema_validator.py: 71% coverage
 ─────────────────────────────────
 TOTAL:               87% coverage
@@ -53,7 +53,7 @@ TOTAL:               87% coverage
 
 | Metric | Before (v0.2.0) | After (v0.3.0) |
 |--------|-----------------|----------------|
-| **Test Pass Rate** | 25% (2/8) | 100% (8/8) | 
+| **Test Pass Rate** | 25% (2/8) | 100% (8/8) |
 | **Hallucination Risk** | CRITICAL | ELIMINATED |
 | **Data Integrity** | NONE | COMPREHENSIVE |
 | **Safety Guardrails** | NONE | PRODUCTION-READY |
@@ -61,12 +61,12 @@ TOTAL:               87% coverage
 ### Adversarial Testing Results
 Adversarial test suite validates the agent against edge cases and attack scenarios:
 
-- **Rejects fictional tire compounds** (e.g., HYPERSOFT from pre-2019 era)  
-- **Validates tire age bounds** (rejects negative ages, impossibly old tires)  
-- **Enforces race lap limits** (detects lap 99 in 80-lap maximum race)  
-- **Detects dangerous scenarios** (slicks in heavy rain → BOX with 0.98 confidence)  
-- **Prevents tire/weather mismatches** (wet tires on dry track → BOX with 0.95 confidence)  
-- **Calibrates confidence appropriately** (0.90 for clear decisions, 0.65 for ambiguous)  
+- **Rejects fictional tire compounds** (e.g., HYPERSOFT from pre-2019 era)
+- **Validates tire age bounds** (rejects negative ages, impossibly old tires)
+- **Enforces race lap limits** (detects lap 99 in 80-lap maximum race)
+- **Detects dangerous scenarios** (slicks in heavy rain → BOX with 0.98 confidence)
+- **Prevents tire/weather mismatches** (wet tires on dry track → BOX with 0.95 confidence)
+- **Calibrates confidence appropriately** (0.90 for clear decisions, 0.65 for ambiguous)
 
 ---
 
@@ -110,7 +110,7 @@ Exposes vulnerabilities and validates guardrails against:
 ### Installation
 ```bash
 # Clone the repository
-git clone 
+git clone
 cd f1-strategy-ai-qa-framework
 
 # Create virtual environment
