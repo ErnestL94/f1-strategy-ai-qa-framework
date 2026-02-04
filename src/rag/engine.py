@@ -115,11 +115,11 @@ class F1StrategyRAG:
                 - Reasoning: {ret_reasoning[:150]}
                 """
             )
-
         context = "\n".join(context_sections)
 
         # Build full prompt
-        prompt = f"""You are an expert F1 race strategist. Analyze the current racing situation and recommend whether the driver should BOX (pit stop) or STAY_OUT (remain on track).
+        prompt = f"""
+                You are an expert F1 race strategist. Analyze the current racing situation and recommend whether the driver should BOX (pit stop) or STAY_OUT (remain on track).
                 CURRENT SITUATION:
                 Lap: {lap}
                 Driver: {driver}
@@ -145,7 +145,8 @@ class F1StrategyRAG:
                 - Consider tire degradation, gaps to competitors, and race phase
                 - Safety Car/VSC periods offer advantageous pit windows
 
-                Respond with ONLY the JSON object, nothing else."""
+                Respond with ONLY the JSON object, nothing else.
+                """
 
         return prompt
 
