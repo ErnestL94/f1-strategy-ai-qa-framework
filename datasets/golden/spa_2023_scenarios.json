@@ -1,209 +1,244 @@
 {
   "race": {
-    "name": "Belgian Grand Prix 2023",
-    "track": "Spa-Francorchamps",
     "date": "2023-07-30",
+    "name": "Belgian Grand Prix 2023",
+    "regulation_era": "ground_effect_2023",
     "total_laps": 44,
-    "regulation_era": "ground_effect_2023"
+    "track": "Spa-Francorchamps"
   },
   "scenarios": [
     {
-      "id": "spa_2023_verstappen_lap14",
-      "name": "Verstappen Tire Offset Strategy - Controlled Burn",
-      "lap": 14,
+      "context": {
+        "description": "Started P6 due to 5-place grid penalty. Teammate P\u00e9rez pitted Lap 13. Verstappen extending stint for tire offset strategy.",
+        "strategic_significance": "Tests AI's understanding of tire offset strategy vs immediate undercut. Superior pace allows controlled stint extension."
+      },
       "driver": "VER",
-      "position": {
-        "before": 2,
-        "after": 1
-      },
-      "tires": {
-        "compound": "SOFT",
-        "age_laps": 14,
-        "condition": "end_of_optimal_window"
-      },
-      "weather": {
-        "condition": "dry",
-        "track_temp": 32,
-        "air_temp": 24,
-        "description": "Overcast, dry track"
-      },
       "gaps": {
         "to_p1_perez": 1.2,
         "to_p3": 8.5
       },
-      "context": {
-        "description": "Started P6 due to 5-place grid penalty. Teammate Pérez pitted Lap 13. Verstappen extending stint for tire offset strategy.",
-        "strategic_significance": "Tests AI's understanding of tire offset strategy vs immediate undercut. Superior pace allows controlled stint extension."
-      },
       "golden_truth": {
-        "decision": "STAY_OUT",
-        "rationale": "Softs at 14 laps still viable. Extending creates tire offset vs Pérez. Superior pace allows controlled burn strategy. Will pit soon but maximizing stint length.",
+        "actual_outcome": "Stayed out, pitted later, emerged behind P\u00e9rez, took lead on Lap 17",
         "confidence_level": "MEDIUM",
-        "risk_level": "MEDIUM",
-        "actual_outcome": "Stayed out, pitted later, emerged behind Pérez, took lead on Lap 17"
+        "decision": "STAY_OUT",
+        "rationale": "Softs at 14 laps still viable. Extending creates tire offset vs P\u00e9rez. Superior pace allows controlled burn strategy. Will pit soon but maximizing stint length.",
+        "risk_level": "MEDIUM"
+      },
+      "id": "spa_2023_verstappen_lap14",
+      "lap": 14,
+      "name": "Verstappen Tire Offset Strategy - Controlled Burn",
+      "position": {
+        "after": 1,
+        "before": 2
       },
       "test_criteria": {
-        "must_recommend": "STAY_OUT",
-        "confidence_range": [0.60, 0.75],
-        "key_factors": ["tire_offset_strategy", "pace_advantage", "controlled_stint_extension"]
+        "confidence_range": [
+          0.6,
+          0.75
+        ],
+        "key_factors": [
+          "tire_offset_strategy",
+          "pace_advantage",
+          "controlled_stint_extension"
+        ],
+        "must_recommend": "STAY_OUT"
+      },
+      "tires": {
+        "age_laps": 14,
+        "compound": "SOFT",
+        "condition": "end_of_optimal_window"
+      },
+      "weather": {
+        "air_temp": 24,
+        "condition": "dry",
+        "description": "Overcast, dry track",
+        "track_temp": 32
       }
     },
     {
-      "id": "spa_2023_norris_lap17",
-      "name": "Norris Rain Gamble - Soft Tire All-In",
-      "lap": 17,
-      "driver": "NOR",
-      "position": 16,
-      "tires": {
-        "compound": "HARD",
-        "age_laps": 12,
-        "condition": "mid_stint"
-      },
-      "weather": {
-        "condition": "drizzle",
-        "track_temp": 28,
-        "air_temp": 21,
-        "description": "Light rain starting, uncertain conditions",
-        "rainfall": true
-      },
-      "gaps": {
-        "to_p15": 2.1,
-        "to_p17": 3.8
-      },
       "context": {
         "description": "Started poorly, fell to P16. Light rain beginning. Most teams preparing for Intermediates. McLaren considering all-or-nothing SOFT gamble.",
         "strategic_significance": "Tests AI's risk assessment in uncertain weather. Contrarian strategy vs field. Commitment to 27-lap soft stint."
       },
-      "golden_truth": {
-        "decision": "BOX",
-        "compound_choice": "SOFT",
-        "rationale": "Light rain forecast to pass quickly. Track will dry. Soft tires allow recovery drive. Contrarian strategy vs Intermediate rush. High risk, high reward from P16.",
-        "confidence_level": "LOW",
-        "risk_level": "HIGH",
-        "actual_outcome": "Pitted for Softs, nursed them 27 laps to finish, recovered to P7"
+      "driver": "NOR",
+      "gaps": {
+        "to_p15": 2.1,
+        "to_p17": 3.8
       },
+      "golden_truth": {
+        "actual_outcome": "Pitted for Softs, nursed them 27 laps to finish, recovered to P7",
+        "compound_choice": "SOFT",
+        "confidence_level": "LOW",
+        "decision": "BOX",
+        "rationale": "Light rain forecast to pass quickly. Track will dry. Soft tires allow recovery drive. Contrarian strategy vs Intermediate rush. High risk, high reward from P16.",
+        "risk_level": "HIGH"
+      },
+      "id": "spa_2023_norris_lap17",
+      "lap": 17,
+      "name": "Norris Rain Gamble - Soft Tire All-In",
+      "position": 16,
       "test_criteria": {
-        "acceptable_decisions": ["BOX", "STAY_OUT"],
-        "if_box_acceptable_compounds": ["SOFT", "INTERMEDIATE"],
-        "confidence_range": [0.50, 0.70],
-        "key_factors": ["weather_uncertainty", "contrarian_strategy", "recovery_position"]
+        "acceptable_decisions": [
+          "BOX",
+          "STAY_OUT"
+        ],
+        "confidence_range": [
+          0.5,
+          0.7
+        ],
+        "if_box_acceptable_compounds": [
+          "SOFT",
+          "INTERMEDIATE"
+        ],
+        "key_factors": [
+          "weather_uncertainty",
+          "contrarian_strategy",
+          "recovery_position"
+        ]
+      },
+      "tires": {
+        "age_laps": 12,
+        "compound": "HARD",
+        "condition": "mid_stint"
+      },
+      "weather": {
+        "air_temp": 21,
+        "condition": "drizzle",
+        "description": "Light rain starting, uncertain conditions",
+        "rainfall": true,
+        "track_temp": 28
       }
     },
     {
-      "id": "spa_2023_russell_lap22",
-      "name": "Russell One-Stop Commitment - Track Position Priority",
-      "lap": 22,
-      "driver": "RUS",
-      "position": 6,
-      "tires": {
-        "compound": "MEDIUM",
-        "age_laps": 22,
-        "condition": "high_wear"
-      },
-      "weather": {
-        "condition": "damp",
-        "track_temp": 26,
-        "air_temp": 20,
-        "description": "Post-shower, track drying"
-      },
-      "gaps": {
-        "to_p5": 8.2,
-        "to_p7": 12.5
-      },
       "context": {
         "description": "Only driver in top 10 attempting one-stop. Mediums at 22 laps, high wear. Rain shower passed. Track position vs fresh tires decision.",
         "strategic_significance": "Tests AI's track position valuation vs tire degradation. One-stop vs two-stop strategic commitment at Spa."
       },
-      "golden_truth": {
-        "decision": "BOX",
-        "compound_choice": "SOFT",
-        "rationale": "Mediums at 22 laps near critical degradation. One-stop requires final stint on Softs. 12.5s gap to P7 provides safe pit window. Commit to strategy.",
-        "confidence_level": "HIGH",
-        "risk_level": "MEDIUM",
-        "actual_outcome": "Pitted for Softs, defended position on one-stop strategy"
+      "driver": "RUS",
+      "gaps": {
+        "to_p5": 8.2,
+        "to_p7": 12.5
       },
+      "golden_truth": {
+        "actual_outcome": "Pitted for Softs, defended position on one-stop strategy",
+        "compound_choice": "SOFT",
+        "confidence_level": "HIGH",
+        "decision": "BOX",
+        "rationale": "Mediums at 22 laps near critical degradation. One-stop requires final stint on Softs. 12.5s gap to P7 provides safe pit window. Commit to strategy.",
+        "risk_level": "MEDIUM"
+      },
+      "id": "spa_2023_russell_lap22",
+      "lap": 22,
+      "name": "Russell One-Stop Commitment - Track Position Priority",
+      "position": 6,
       "test_criteria": {
-        "must_recommend": "BOX",
-        "must_recommend_compound": "SOFT",
         "confidence_minimum": 0.75,
-        "key_factors": ["one_stop_commitment", "tire_degradation_critical", "safe_pit_window"]
+        "key_factors": [
+          "one_stop_commitment",
+          "tire_degradation_critical",
+          "safe_pit_window"
+        ],
+        "must_recommend": "BOX",
+        "must_recommend_compound": "SOFT"
+      },
+      "tires": {
+        "age_laps": 22,
+        "compound": "MEDIUM",
+        "condition": "high_wear"
+      },
+      "weather": {
+        "air_temp": 20,
+        "condition": "damp",
+        "description": "Post-shower, track drying",
+        "track_temp": 26
       }
     },
     {
-      "id": "spa_2023_leclerc_lap24",
-      "name": "Leclerc Overcut Counter - Drying Track Exploitation",
-      "lap": 24,
-      "driver": "LEC",
-      "position": 3,
-      "tires": {
-        "compound": "MEDIUM",
-        "age_laps": 11,
-        "condition": "optimal"
-      },
-      "weather": {
-        "condition": "drying",
-        "track_temp": 30,
-        "air_temp": 22,
-        "description": "Rapidly drying after shower, improving grip"
-      },
-      "gaps": {
-        "to_p2": 4.8,
-        "to_p4_hamilton": 1.5
-      },
       "context": {
         "description": "Hamilton pitted Lap 22 to undercut. Track drying rapidly. Leclerc staying out 2 extra laps on Mediums to execute overcut.",
         "strategic_significance": "Tests AI's dynamic track condition awareness. Overcut strategy on improving surface. Timing vs Hamilton undercut."
       },
+      "driver": "LEC",
+      "gaps": {
+        "to_p2": 4.8,
+        "to_p4_hamilton": 1.5
+      },
       "golden_truth": {
+        "actual_outcome": "Stayed out, set personal bests, emerged ahead of Hamilton, secured P3",
+        "confidence_level": "HIGH",
         "decision": "STAY_OUT",
         "rationale": "Track rapidly drying favors staying out. Mediums at 11 laps optimal. Setting personal bests as grip improves. Overcut Hamilton's undercut by 2 laps.",
-        "confidence_level": "HIGH",
-        "risk_level": "MEDIUM",
-        "actual_outcome": "Stayed out, set personal bests, emerged ahead of Hamilton, secured P3"
+        "risk_level": "MEDIUM"
       },
+      "id": "spa_2023_leclerc_lap24",
+      "lap": 24,
+      "name": "Leclerc Overcut Counter - Drying Track Exploitation",
+      "position": 3,
       "test_criteria": {
-        "must_recommend": "STAY_OUT",
         "confidence_minimum": 0.75,
-        "key_factors": ["drying_track_improving_grip", "overcut_strategy", "optimal_tire_window"]
+        "key_factors": [
+          "drying_track_improving_grip",
+          "overcut_strategy",
+          "optimal_tire_window"
+        ],
+        "must_recommend": "STAY_OUT"
+      },
+      "tires": {
+        "age_laps": 11,
+        "compound": "MEDIUM",
+        "condition": "optimal"
+      },
+      "weather": {
+        "air_temp": 22,
+        "condition": "drying",
+        "description": "Rapidly drying after shower, improving grip",
+        "track_temp": 30
       }
     },
     {
-      "id": "spa_2023_hamilton_lap42",
-      "name": "Hamilton Free Pit Stop - Fastest Lap Opportunism",
-      "lap": 42,
-      "driver": "HAM",
-      "position": 4,
-      "tires": {
-        "compound": "SOFT",
-        "age_laps": 15,
-        "condition": "worn"
-      },
-      "weather": {
-        "condition": "dry",
-        "track_temp": 33,
-        "air_temp": 25
-      },
-      "gaps": {
-        "to_p3": 14.8,
-        "to_p5": 18.2
-      },
       "context": {
         "description": "P4 secured with large gaps. 2 laps remaining. Opportunity for free pit stop to attack fastest lap point with fresh tires.",
         "strategic_significance": "Tests AI's opportunistic decision making. Free pit stop exploitation. Risk-free fastest lap attempt."
       },
-      "golden_truth": {
-        "decision": "BOX",
-        "compound_choice": "MEDIUM",
-        "rationale": "Massive gaps front and rear. P4 secured. Free pit stop with 2 laps remaining. Fresh Mediums for fastest lap point attempt. Zero strategic risk.",
-        "confidence_level": "HIGH",
-        "risk_level": "LOW",
-        "actual_outcome": "Pitted for Mediums, set fastest lap 1:47.305, claimed extra point"
+      "driver": "HAM",
+      "gaps": {
+        "to_p3": 14.8,
+        "to_p5": 18.2
       },
+      "golden_truth": {
+        "actual_outcome": "Pitted for Mediums, set fastest lap 1:47.305, claimed extra point",
+        "compound_choice": "MEDIUM",
+        "confidence_level": "HIGH",
+        "decision": "BOX",
+        "rationale": "Massive gaps front and rear. P4 secured. Free pit stop with 2 laps remaining. Fresh Mediums for fastest lap point attempt. Zero strategic risk.",
+        "risk_level": "LOW"
+      },
+      "id": "spa_2023_hamilton_lap42",
+      "lap": 42,
+      "name": "Hamilton Free Pit Stop - Fastest Lap Opportunism",
+      "position": 4,
       "test_criteria": {
-        "must_recommend": "BOX",
-        "acceptable_compounds": ["SOFT", "MEDIUM"],
+        "acceptable_compounds": [
+          "SOFT",
+          "MEDIUM"
+        ],
         "confidence_minimum": 0.85,
-        "key_factors": ["free_pit_stop", "fastest_lap_opportunity", "position_secured"]
+        "key_factors": [
+          "free_pit_stop",
+          "fastest_lap_opportunity",
+          "position_secured"
+        ],
+        "must_recommend": "BOX"
+      },
+      "tires": {
+        "age_laps": 15,
+        "compound": "SOFT",
+        "condition": "worn"
+      },
+      "weather": {
+        "air_temp": 25,
+        "condition": "dry",
+        "track_temp": 33
       }
     }
   ]

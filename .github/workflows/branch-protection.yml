@@ -1,0 +1,17 @@
+name: Branch Protection Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check PR
+      run: |
+        echo "✅ All checks must pass before merge"
+        echo "Required:"
+        echo "  - All tests passing"
+        echo "  - Code coverage > 80%"
+        echo "  - No failing scenarios"

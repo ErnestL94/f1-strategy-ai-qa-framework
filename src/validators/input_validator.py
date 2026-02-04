@@ -2,11 +2,13 @@
 Input validation for race scenarios.
 Prevents hallucinations and catches impossible data.
 """
+
 from typing import Dict, List, Tuple
 
 
 class ScenarioValidationError(ValueError):
     """Raised when scenario data is invalid"""
+
     pass
 
 
@@ -15,14 +17,14 @@ class InputValidator:
     Validates race scenario inputs before processing.
     Prevents the agent from making decisions on impossible/dangerous data.
     """
-    
+
     # FIA regulation: Valid tire compounds (2023+)
     VALID_COMPOUNDS = ["SOFT", "MEDIUM", "HARD", "INTERMEDIATE", "WET"]
-    
+
     # Reasonable bounds
     MAX_TIRE_AGE = 100  # No tire lasts 100 laps
     MAX_RACE_LAPS = 80  # Longest F1 races are ~70 laps
-    
+
     @staticmethod
     def validate_scenario(scenario: Dict) -> Tuple[bool, List[str]]:
         """
@@ -33,7 +35,7 @@ class InputValidator:
             (is_valid, list_of_errors)
         """
         errors = []
-        
+
         # Validate tire compound
         if "tires" in scenario:
             compound = scenario["tires"].get("compound")
@@ -42,7 +44,7 @@ class InputValidator:
                     f"Invalid tire compound: '{compound}'. "
                     f"Valid compounds: {InputValidator.VALID_COMPOUNDS}"
                 )
-            
+
             # Validate tire age
             tire_age = scenario["tires"].get("age_laps")
             if tire_age is not None:
@@ -53,7 +55,7 @@ class InputValidator:
                         f"Tire age ({tire_age} laps) exceeds maximum realistic age "
                         f"({InputValidator.MAX_TIRE_AGE} laps)"
                     )
-        
+
         # Validate lap number
         if "lap" in scenario:
             lap = scenario["lap"]
@@ -61,16 +63,14 @@ class InputValidator:
                 errors.append(f"Lap number must be positive: {lap}")
             elif lap > InputValidator.MAX_RACE_LAPS:
                 errors.append(
-                    f"Lap {lap} exceeds maximum race distance "
-                    f"({InputValidator.MAX_RACE_LAPS})"
+                    f"Lap {lap} exceeds maximum race distance " f"({InputValidator.MAX_RACE_LAPS})"
                 )
-        
+
         return (len(errors) == 0, errors)
-    
+
     @staticmethod
     def validate_weather_tire_compatibility(
-        tire_compound: str,
-        weather_condition: str
+        tire_compound: str, weather_condition: str
     ) -> Tuple[bool, str]:
         """
         Check if tire compound is appropriate for weather.
@@ -78,7 +78,7 @@ class InputValidator:
             (is_compatible, warning_message)
         """
         condition_lower = weather_condition.lower()
-        
+
         # Slicks in wet conditions
         if tire_compound in ["SOFT", "MEDIUM", "HARD"]:
             dangerous_conditions = ["heavy_rain", "rain", "wet"]
@@ -86,9 +86,9 @@ class InputValidator:
                 return (
                     False,
                     f"DANGER: Slick tires ({tire_compound}) in {weather_condition} "
-                    f"conditions. Must change to INTERMEDIATE or WET."
+                    f"conditions. Must change to INTERMEDIATE or WET.",
                 )
-        
+
         # Wet tires in dry conditions
         if tire_compound in ["INTERMEDIATE", "WET"]:
             if "dry" in condition_lower:
@@ -96,7 +96,7 @@ class InputValidator:
                 return (
                     False,
                     f"{severity}: {tire_compound} tires will overheat on dry track. "
-                    f"Must change to slick compound."
+                    f"Must change to slick compound.",
                 )
-        
+
         return (True, "")
