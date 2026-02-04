@@ -1,0 +1,206 @@
+{
+  "race": {
+    "name": "British Grand Prix 2023",
+    "track": "Silverstone",
+    "date": "2023-07-09",
+    "total_laps": 52,
+    "regulation_era": "ground_effect_2023"
+  },
+  "scenarios": [
+    {
+      "id": "silverstone_2023_norris_lap1",
+      "name": "Norris Explosive Start - Tire Warm-up Challenge",
+      "lap": 1,
+      "driver": "NOR",
+      "position": {
+        "before": 2,
+        "after": 1
+      },
+      "tires": {
+        "compound": "MEDIUM",
+        "age_laps": 0,
+        "condition": "cold_start"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 28,
+        "air_temp": 19,
+        "description": "Overcast, cool conditions"
+      },
+      "context": {
+        "description": "McLaren MCL60 upgrades debut. Norris proves tire warm-up advantage over Verstappen.",
+        "strategic_significance": "Tests AI's understanding of tire temperature generation on fresh compounds"
+      },
+      "golden_truth": {
+        "decision": "STAY_OUT",
+        "rationale": "Fresh Mediums optimal for stint 1. MCL60 generates tire temp quickly. Track position critical at start.",
+        "confidence_level": "HIGH",
+        "risk_level": "LOW"
+      },
+      "test_criteria": {
+        "must_recommend": "STAY_OUT",
+        "must_not_recommend": "BOX",
+        "confidence_minimum": 0.80,
+        "key_factors": ["tire_age_optimal", "track_position_value", "stint_start"]
+      }
+    },
+    {
+      "id": "silverstone_2023_russell_lap28",
+      "name": "Russell Extended Soft Stint - Degradation Edge Case",
+      "lap": 28,
+      "driver": "RUS",
+      "position": 5,
+      "tires": {
+        "compound": "SOFT",
+        "age_laps": 28,
+        "condition": "high_wear"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 32,
+        "air_temp": 21
+      },
+      "gaps": {
+        "to_p4": 8.2,
+        "to_p6": 12.5
+      },
+      "context": {
+        "description": "Russell on offset strategy. Softs expected to fail by lap 15, but Silverstone surface kinder than modeled.",
+        "strategic_significance": "Tests AI's tire degradation modeling. Can it recognize when tires last longer than expected?"
+      },
+      "golden_truth": {
+        "decision": "STAY_OUT",
+        "rationale": "Softs degrading slower than expected. Offset strategy allows later pit to undercut Ferraris. Track position maintained.",
+        "confidence_level": "MEDIUM",
+        "risk_level": "MEDIUM",
+        "actual_outcome": "Pitted lap 29, jumped Ferraris"
+      },
+      "test_criteria": {
+        "must_recommend": "STAY_OUT",
+        "confidence_range": [0.60, 0.75],
+        "key_factors": ["offset_strategy", "degradation_slower_than_expected", "undercut_opportunity"]
+      }
+    },
+    {
+      "id": "silverstone_2023_piastri_lap30",
+      "name": "Piastri Pre-Safety Car Pit - Timing Tragedy",
+      "lap": 30,
+      "driver": "PIA",
+      "position": 3,
+      "tires": {
+        "compound": "MEDIUM",
+        "age_laps": 30,
+        "condition": "end_of_life"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 33,
+        "air_temp": 22
+      },
+      "gaps": {
+        "to_p2": 4.8,
+        "to_p4": 11.2
+      },
+      "context": {
+        "description": "Piastri matching leader pace on 30-lap Mediums. Perfect strategy execution... until Safety Car on lap 32.",
+        "strategic_significance": "Tests AI's risk assessment of safety car probability and pit timing"
+      },
+      "golden_truth": {
+        "decision": "BOX",
+        "rationale": "Mediums at end of optimal window. P3 secure with 11.2s gap. Standard two-stop strategy dictates pit now.",
+        "confidence_level": "HIGH",
+        "risk_level": "LOW",
+        "actual_outcome": "Pitted lap 30 for Hards. Lost podium when SC came lap 32 (Hamilton pitted under SC)"
+      },
+      "test_criteria": {
+        "must_recommend": "BOX",
+        "confidence_minimum": 0.75,
+        "key_factors": ["tire_degradation_critical", "safe_pit_window", "two_stop_strategy"],
+        "hindsight_note": "Correct decision with available info. Safety car was unpredictable."
+      }
+    },
+    {
+      "id": "silverstone_2023_norris_lap34_restart",
+      "name": "Norris Cold Hard Tires - Defensive Masterclass",
+      "lap": 34,
+      "driver": "NOR",
+      "position": 2,
+      "tires": {
+        "compound": "HARD",
+        "age_laps": 0,
+        "condition": "cold",
+        "temperature": "below_optimal"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 30,
+        "air_temp": 21,
+        "description": "Cooler after safety car"
+      },
+      "race_state": "safety_car_restart",
+      "gaps": {
+        "to_p1": 1.2,
+        "to_p3_hamilton": 0.8
+      },
+      "context": {
+        "description": "McLaren's controversial Hard tire choice for final stint. Norris must defend against Hamilton's fresh Softs.",
+        "strategic_significance": "Tests AI's compound choice under pressure. Hards take 2+ laps to switch on. High risk."
+      },
+      "golden_truth": {
+        "decision": "STAY_OUT",
+        "compound_choice": "HARD",
+        "rationale": "18 laps remaining. Hard ensures no second stop. Accept 2-lap vulnerability window vs Soft's pace advantage.",
+        "confidence_level": "MEDIUM",
+        "risk_level": "HIGH",
+        "actual_outcome": "Norris defended P2, Hards switched on by lap 36"
+      },
+      "test_criteria": {
+        "must_recommend": "STAY_OUT",
+        "acceptable_compounds": ["HARD", "MEDIUM"],
+        "must_not_recommend": "SOFT",
+        "confidence_range": [0.55, 0.70],
+        "key_factors": ["race_distance_remaining", "tire_strategy_commitment", "track_position_priority"]
+      }
+    },
+    {
+      "id": "silverstone_2023_hamilton_lap34_sc",
+      "name": "Hamilton Safety Car Opportunism",
+      "lap": 34,
+      "driver": "HAM",
+      "position": 3,
+      "tires": {
+        "compound": "MEDIUM",
+        "age_laps": 33,
+        "condition": "critical_wear"
+      },
+      "weather": {
+        "condition": "dry",
+        "track_temp": 30,
+        "air_temp": 21
+      },
+      "race_state": "safety_car",
+      "gaps": {
+        "to_p2": 12.5,
+        "to_p4": 15.8
+      },
+      "context": {
+        "description": "Hamilton stayed out 33 laps on start Mediums. Safety car = 'free' pit stop for fresh Softs.",
+        "strategic_significance": "Tests AI's safety car exploitation. Massive tire advantage for final stint."
+      },
+      "golden_truth": {
+        "decision": "BOX",
+        "compound_choice": "SOFT",
+        "rationale": "Safety car negates pit time loss. Fresh Softs vs McLaren's Hards = 1-1.5s/lap advantage for 18 laps. Attack mode.",
+        "confidence_level": "HIGH",
+        "risk_level": "LOW",
+        "actual_outcome": "Pitted for Softs, attacked for P2, secured podium"
+      },
+      "test_criteria": {
+        "must_recommend": "BOX",
+        "must_recommend_compound": "SOFT",
+        "confidence_minimum": 0.85,
+        "key_factors": ["safety_car_opportunity", "tire_age_critical", "pace_advantage_softs"]
+      }
+    }
+  ]
+}
