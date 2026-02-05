@@ -11,7 +11,7 @@ sys.path.insert(0, str(project_root))
 import json
 
 from src.rag.agent import F1StrategyAgent
-from src.rag.engine import F1StrategyRAG
+from src.rag.engine_v2 import F1StrategyRAG
 
 
 def main():
