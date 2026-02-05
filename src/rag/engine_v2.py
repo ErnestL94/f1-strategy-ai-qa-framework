@@ -190,14 +190,12 @@ class F1StrategyRAG:
             ret_decision = ret_scenario.get("golden_truth", {}).get("decision", "UNKNOWN")
             ret_reasoning = ret_scenario.get("golden_truth", {}).get("reasoning", "")
 
-            context_sections.append(
-                f"""Historical Scenario {i} (Similarity: {similarity:.2f}):
+            context_sections.append(f"""Historical Scenario {i} (Similarity: {similarity:.2f}):
 - Race: {ret_scenario.get('race', {}).get('track', 'Unknown')} {ret_scenario.get('race', {}).get('year', '')}
 - Lap {ret_scenario.get('lap')}, Position {ret_scenario.get('position')}
 - Tires: {ret_scenario.get('tires', {}).get('compound')} ({ret_scenario.get('tires', {}).get('age_laps')} laps old)
 - Decision: {ret_decision}
-- Reasoning: {ret_reasoning[:150] if ret_reasoning else 'N/A'}"""
-            )
+- Reasoning: {ret_reasoning[:150] if ret_reasoning else 'N/A'}""")
 
         context = "\n\n".join(context_sections)
 
